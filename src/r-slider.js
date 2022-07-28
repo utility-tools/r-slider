@@ -15,7 +15,6 @@ class RSlider {
 
     //
     slideCount;
-    activeIndex = 0;
 
     constructor ({gap, selector, visibleItems, edgeItemWidth, animationDuration}) {
         // set elements
@@ -65,34 +64,72 @@ class RSlider {
     }
 
     doNext() {
-        
         // if in transition, dont act
         if(this.sliderContainer.classList.contains('in-transition')) {
-            console.log('!!WARNIGN!! in animation');
             return;
         }
 
-        console.log('active item', this.activeIndex);
+        // calculate new left value
+        const newLeft = -(this.slideWidth - this.edgeItemWidth) - (this.slideWidth + this.gap);
         
-        const newLeft = -(this.slideWidth - this.edgeItemWidth) - ((this.slideWidth + this.gap) * (this.activeIndex + 1));
+        // trigger animation on left offset change
         this.sliderContainer.classList.add('in-transition');
 
+        // change left offset for animation
         this.sliderElm.style.setProperty('--edge-width', `${newLeft}px`);
-        // this.activeIndex++;
 
         // post animation, shift first item to last
         const timeout = setTimeout(() => {
-            this.sliderContainer.classList.remove('in-transition');
             const firstItem = this.sliderContainer.querySelector('.r-slider__slide');
-            // this.sliderContainer.append(firstItem);
-            // this.sliderElm.style.setProperty('--edge-width', `-${this.slideWidth - this.edgeItemWidth}px`);
-            // this.activeIndex = firstItem.dataset.index - 0 + 1;
+
+            // stops animation of left offset reset
+            this.sliderContainer.classList.remove('in-transition');
+
+            // shift first item to last for looping
+            this.sliderContainer.append(firstItem);
+
+            // reset left offset to adjust slide shift
+            this.sliderElm.style.setProperty('--edge-width', `-${this.slideWidth - this.edgeItemWidth}px`);
+
+            //
             clearTimeout(timeout);
-            // debugger;
         }, this.duration);
     }
 
     doPrev() {
-        console.log('prev');
+        // if in transition, dont act
+        if(this.sliderContainer.classList.contains('in-transition')) {
+            return;
+        }
+
+        // 
+        const lastItem = this.sliderContainer.querySelector('.r-slider__slide:last-child');
+        this.sliderContainer.prepend(lastItem);
+
+        // calculate new left value
+        const newLeft = -(this.slideWidth - this.edgeItemWidth) - (this.slideWidth + this.gap);
+
+        // change left offset for animation
+        this.sliderElm.style.setProperty('--edge-width', `${newLeft}px`);
+
+        // set animation to call stack
+        const timeout1 = setTimeout(() => {
+            // init animation
+            this.sliderContainer.classList.add('in-transition');
+            this.sliderElm.style.setProperty('--edge-width', `-${this.slideWidth - this.edgeItemWidth}px`);
+
+            //
+            clearTimeout(timeout1);
+        }, 0);
+
+        // post animation, shift first item to last
+        const timeout2 = setTimeout(() => {
+            // stops animation of left offset reset
+            this.sliderContainer.classList.remove('in-transition');
+            this.sliderElm.style.setProperty('--edge-width', `-${this.slideWidth - this.edgeItemWidth}px`);
+
+            //
+            clearTimeout(timeout2);
+        }, this.duration);
     }
 }

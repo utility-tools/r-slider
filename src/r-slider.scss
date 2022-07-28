@@ -11,12 +11,22 @@
         left: var(--edge-width);
 
         &.in-transition {
-            transition: left var(--animation-duration);
+            transition: left var(--animation-duration) ease-in-out;
         }
     }
 
     &__slide {
-        // flex: 1;
+        position: relative;
+
+        &-caption{
+            background: rgba(0, 0, 0, 0.8);
+            position: absolute;
+            bottom: 0;
+            left: 0;
+            width: 100%;
+            text-align: center;
+            color: #FFF;
+        }
     }
 
     &__slide-img {

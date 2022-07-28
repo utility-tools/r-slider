@@ -1,0 +1,23 @@
+{
+    "name": "r-slider",
+    "description": "Javascript slider to slide any type of content",
+    "version": "1.0.0",
+    "main": "app.js",
+    "scripts": {
+        "start": "live-server",
+        "test": "echo \"Error: no test specified\" && exit 1"
+    },
+    "repository": {
+        "type": "git",
+        "url": "git+https://github.com/utility-tools/r-slider.git"
+    },
+    "author": "Ashish Kumar",
+    "license": "MIT",
+    "bugs": {
+        "url": "https://github.com/utility-tools/r-slider/issues"
+    },
+    "homepage": "https://github.com/utility-tools/r-slider#readme",
+    "dependencies": {
+        "live-server": "^1.2.2"
+    }
+}

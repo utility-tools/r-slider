@@ -15,8 +15,22 @@
 }
 
 .r-slider__slides.in-transition {
-  -webkit-transition: left var(--animation-duration);
-  transition: left var(--animation-duration);
+  -webkit-transition: left var(--animation-duration) ease-in-out;
+  transition: left var(--animation-duration) ease-in-out;
+}
+
+.r-slider__slide {
+  position: relative;
+}
+
+.r-slider__slide-caption {
+  background: rgba(0, 0, 0, 0.8);
+  position: absolute;
+  bottom: 0;
+  left: 0;
+  width: 100%;
+  text-align: center;
+  color: #FFF;
 }
 
 .r-slider__slide-img {
