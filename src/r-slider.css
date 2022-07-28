@@ -1,7 +1,42 @@
 .r-slider {
-    position: relative;
+  position: relative;
+  width: 100%;
+  overflow: hidden;
 }
 
 .r-slider__slides {
-    position: relative;
+  position: relative;
+  display: -webkit-box;
+  display: -ms-flexbox;
+  display: flex;
+  gap: var(--gap);
+  width: var(--slider-width);
+  left: var(--edge-width);
 }
+
+.r-slider__slides.in-transition {
+  -webkit-transition: left var(--animation-duration);
+  transition: left var(--animation-duration);
+}
+
+.r-slider__slide-img {
+  max-width: 100%;
+}
+
+.r-slider__controls {
+  position: absolute;
+  top: calc(50% - 12px);
+  left: 50px;
+  width: calc(100% - 100px);
+  display: -webkit-box;
+  display: -ms-flexbox;
+  display: flex;
+  -webkit-box-pack: justify;
+      -ms-flex-pack: justify;
+          justify-content: space-between;
+}
+
+.r-slider__prev, .r-slider__next {
+  cursor: pointer;
+}
+/*# sourceMappingURL=r-slider.css.map */
