@@ -36,10 +36,6 @@
   color: #FFF;
 }
 
-.r-slider__slide.r-slider__slide--active {
-  border: 1px solid red;
-}
-
 .r-slider__slide-img {
   width: 100%;
 }
