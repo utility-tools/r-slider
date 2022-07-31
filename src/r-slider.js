@@ -12,7 +12,7 @@ class RSlider {
     slideWidth;
     edgeItemWidth;
     duration;
-
+    
     //
     slideCount;
 
@@ -25,13 +25,12 @@ class RSlider {
         this.nextElm = this.sliderElm.querySelector('.r-slider__next');
 
         // set configs
-        this.visibleItems = visibleItems;
         this.gap = gap;
-        this.edgeItemWidth = edgeItemWidth;
         this.slideCount = this.slides.length;
         this.duration = animationDuration;
 
         // init slider
+        this.initMediaQuery({visibleItems, edgeItemWidth});
         this.setSlideWidth();
         this.setSliderVariables();
         this.init();
@@ -43,7 +42,51 @@ class RSlider {
 
     init() {
         console.log('slider created');
-        
+    }
+
+    initMediaQuery({visibleItems, edgeItemWidth}) {
+        const large = 1280;
+        const medium = 1024;
+        const small = 768;
+
+        // init match media
+        const largeScreen = matchMedia(`(min-width: ${ large }px)`);
+        const mediumScreen = matchMedia(`(min-width: ${ medium }px) and (max-width: ${ large - 1 }px)`);
+        const smallScreen = matchMedia(`(max-width: ${ small - 1 }px)`);
+
+        // works on the window resize event
+        largeScreen.addEventListener('change', (event) => {
+            if(event.matches) {
+                this.visibleItems = visibleItems.large;
+                this.edgeItemWidth = edgeItemWidth.large;
+            }
+        });
+
+        mediumScreen.addEventListener('change', (event) => {
+            if(event.matches) {
+                this.visibleItems = visibleItems.medium;
+                this.edgeItemWidth = edgeItemWidth.medium;
+            }
+        });
+
+        smallScreen.addEventListener('change', (event) => {
+            if(event.matches) {
+                this.visibleItems = visibleItems.small || 1;
+                this.edgeItemWidth = edgeItemWidth.small || 1;
+            }
+        });
+
+        // Works on Page Load for the first time only
+        if(largeScreen.matches) {
+            this.visibleItems = visibleItems.large;
+            this.edgeItemWidth = edgeItemWidth.large;
+        } else if(mediumScreen.matches) {
+            this.visibleItems = visibleItems.medium;
+            this.edgeItemWidth = edgeItemWidth.medium;
+        } else if(smallScreen.matches) {
+            this.visibleItems = visibleItems.small || 1;
+            this.edgeItemWidth = edgeItemWidth.small || 0;
+        }
     }
 
     setSlideWidth() {
