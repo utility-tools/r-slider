@@ -1,23 +1,31 @@
 {
-    "name": "r-slider",
-    "description": "Javascript slider to slide any type of content",
-    "version": "1.0.0",
-    "main": "app.js",
-    "scripts": {
-        "start": "live-server",
-        "test": "echo \"Error: no test specified\" && exit 1"
-    },
-    "repository": {
-        "type": "git",
-        "url": "git+https://github.com/utility-tools/r-slider.git"
-    },
-    "author": "Ashish Kumar",
-    "license": "MIT",
-    "bugs": {
-        "url": "https://github.com/utility-tools/r-slider/issues"
-    },
-    "homepage": "https://github.com/utility-tools/r-slider#readme",
-    "dependencies": {
-        "live-server": "^1.2.2"
-    }
+  "name": "@ashishkumar.ui/r-slider",
+  "description": "Javascript slider to slide any type of content",
+  "version": "1.0.0",
+  "main": "index.js",
+  "scripts": {
+    "start": "live-server",
+    "test": "echo \"Error: no test specified\" && exit 1"
+  },
+  "repository": {
+    "type": "git",
+    "url": "git+https://github.com/utility-tools/r-slider.git"
+  },
+  "keywords": [
+    "R-Slider",
+    "js image slider",
+    "js responsive slider"
+  ],
+  "author": "Ashish Kumar - https://kumarashish.com",
+  "license": "MIT",
+  "bugs": {
+    "url": "https://github.com/utility-tools/r-slider/issues"
+  },
+  "homepage": "https://github.com/utility-tools/r-slider#readme",
+  "dependencies": {
+    "live-server": "^1.2.2"
+  },
+  "devDependencies": {
+    "minify": "^9.1.0"
+  }
 }

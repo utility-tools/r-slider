@@ -1,4 +1,4 @@
-class RSlider {
+export default class RSlider {
     // Elms
     sliderElm;
     sliderContainer;
