@@ -40,15 +40,29 @@
 
     &__controls {
         position: absolute;
-        top: calc(50% - 12px); // 50% of the container - half height of the button
-        left: 50px;
-        width: calc(100% - 100px); // 100% of the container - double of the left value
+        top: calc(50% - 25px); // 50% of the container - half height of the button
+        left: 20px;
+        width: calc(100% - 40px); // 100% of the container - double of the left value
         display: flex;
         justify-content: space-between;
     }
 
     &__prev,
     &__next {
+        background: rgba(0, 0, 0, 0.4);
+        border: 0;
+        border-radius: 50%;
+        height: 50px;
+        width: 50px;
+        text-align: center;
+        line-height: 50px;
+        font-size: 32px;
+        color: #FFF;
         cursor: pointer;
+        transition: all 0.2s ease-in;
+
+        &:hover {
+            background: rgba(0, 0, 0, 0.8);
+        }
     }
 }

@@ -46,9 +46,9 @@
 
 .r-slider__controls {
   position: absolute;
-  top: calc(50% - 12px);
-  left: 50px;
-  width: calc(100% - 100px);
+  top: calc(50% - 25px);
+  left: 20px;
+  width: calc(100% - 40px);
   display: -webkit-box;
   display: -ms-flexbox;
   display: flex;
@@ -58,6 +58,21 @@
 }
 
 .r-slider__prev, .r-slider__next {
+  background: rgba(0, 0, 0, 0.4);
+  border: 0;
+  border-radius: 50%;
+  height: 50px;
+  width: 50px;
+  text-align: center;
+  line-height: 50px;
+  font-size: 32px;
+  color: #FFF;
   cursor: pointer;
+  -webkit-transition: all 0.2s ease-in;
+  transition: all 0.2s ease-in;
+}
+
+.r-slider__prev:hover, .r-slider__next:hover {
+  background: rgba(0, 0, 0, 0.8);
 }
 /*# sourceMappingURL=r-slider.css.map */
