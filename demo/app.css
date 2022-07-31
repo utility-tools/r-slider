@@ -6,3 +6,7 @@
     box-shadow: 0 10px 10px rgba(0, 0, 0, 0.2);
     padding: 10px;
 }
+
+h1 {
+    text-align: center;
+}
