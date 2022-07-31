@@ -5,7 +5,8 @@
         // visibleItems: 3, // in number
         visibleItems: {
             large: 3,
-            medium: 1
+            medium: 1,
+            small: 1
         },
         // edgeItemWidth: 100, // in px
         edgeItemWidth: {
@@ -14,17 +15,5 @@
             small: 0
         },
         animationDuration: 500 // in milliseconds
-    });
-
-    console.log('slider', slider);
-
-    //
-    const screenSizeEl = document.querySelector('#screen-size');
-
-    screenSizeEl.innerHTML = `${window.innerWidth}`;
-
-    window.addEventListener('resize', () => {
-        screenSizeEl.innerHTML = `${window.innerWidth}`;
-        console.log('slider', slider);
     });
 })();
