@@ -30,9 +30,9 @@ export default class RSlider {
         this.duration = animationDuration;
 
         // init slider
-        this.initMediaQuery({visibleItems, edgeItemWidth});
-        this.setSlideWidth();
-        this.setSliderVariables();
+        this.initMediaQuery({visibleItems, edgeItemWidth, onChange: () => {
+            this.init();
+        }});
         this.init();
 
         //
@@ -42,24 +42,27 @@ export default class RSlider {
 
     init() {
         console.log('slider created');
+        this.setSlideWidth();
+        this.setSliderVariables();
         this.setActive();
     }
 
-    initMediaQuery({visibleItems, edgeItemWidth}) {
+    initMediaQuery({visibleItems, edgeItemWidth, onChange}) {
         const large = 1280;
         const medium = 1024;
-        // const small = 768; small is medium - 1
+        const small = medium - 1;
 
         // init match media
         const largeScreen = matchMedia(`(min-width: ${ large }px)`);
         const mediumScreen = matchMedia(`(min-width: ${ medium }px) and (max-width: ${ large - 1 }px)`)
-        const smallScreen = matchMedia(`(max-width: ${ medium - 1 }px)`);
+        const smallScreen = matchMedia(`(max-width: ${ small }px)`);
 
         // works on the window resize event
         largeScreen.addEventListener('change', (event) => {
             if(event.matches) {
                 this.visibleItems = visibleItems.large;
                 this.edgeItemWidth = edgeItemWidth.large;
+                onChange?.();
             }
         });
 
@@ -67,6 +70,7 @@ export default class RSlider {
             if(event.matches) {
                 this.visibleItems = visibleItems.medium;
                 this.edgeItemWidth = edgeItemWidth.medium;
+                onChange?.();
             }
         });
 
@@ -74,6 +78,7 @@ export default class RSlider {
             if(event.matches) {
                 this.visibleItems = visibleItems.small || 1;
                 this.edgeItemWidth = edgeItemWidth.small || 1;
+                onChange?.();
             }
         });
 
