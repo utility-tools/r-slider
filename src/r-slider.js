@@ -112,16 +112,37 @@ export default class RSlider {
         this.sliderElm.style.setProperty('--animation-duration', `${this.duration/1000}s`);
     }
 
-    // @todo
+    /**
+     * when no edgeWidth
+     *      when visible count is odd, (visible count / 2) + 1
+     *      when visible count is even, (visible count / 2) + 1 and next
+     * when has edgeWidth
+     *      when visible count is odd, (visible count / 2) + 1 + 1
+     *      when visible count is even, (visible count / 2) + 1 + 2 and next
+     */
     setActive() {
-        let activeSlide;
+        const slides = this.sliderContainer.querySelectorAll('.r-slider__slide');
 
-        // if(this.visibleItems === 1 && !this.edgeItemWidth) {
-        //     activeSlide = this.slides[0];
-        // }
+        // remove current active
+        slides.forEach(slide => slide.classList.remove('r-slider__slide--active'));
 
-        //
-        activeSlide?.classList.add('r-slider__slide--active');
+        // first active item
+        let activeIndices = [(this.visibleItems - 1) / 2 ];
+
+        // if even
+        if(this.visibleItems % 2 === 0) {
+            activeIndices.push(activeIndices[0] +1);
+        }
+
+        // if has edgeWidth
+        if(this.edgeItemWidth) {
+            activeIndices = activeIndices.map(i => i + 1);
+        }
+
+        // set active
+        activeIndices.forEach(i => {
+            slides[i].classList.add('r-slider__slide--active');
+        });
     }
 
     doNext() {
@@ -139,9 +160,6 @@ export default class RSlider {
         // change left offset for animation
         this.sliderElm.style.setProperty('--edge-width', `${newLeft}px`);
 
-        //
-        this.setActive();
-
         // post animation, shift first item to last
         const timeout = setTimeout(() => {
             const firstItem = this.sliderContainer.querySelector('.r-slider__slide');
@@ -151,6 +169,9 @@ export default class RSlider {
 
             // shift first item to last for looping
             this.sliderContainer.append(firstItem);
+
+            //
+            this.setActive();
 
             // reset left offset to adjust slide shift
             this.sliderElm.style.setProperty('--edge-width', `-${this.slideWidth - this.edgeItemWidth}px`);
@@ -169,14 +190,13 @@ export default class RSlider {
         // 
         const lastItem = this.sliderContainer.querySelector('.r-slider__slide:last-child');
         this.sliderContainer.prepend(lastItem);
+        this.setActive();
 
         // calculate new left value
         const newLeft = -(this.slideWidth - this.edgeItemWidth) - (this.slideWidth + this.gap);
 
         // change left offset for animation
         this.sliderElm.style.setProperty('--edge-width', `${newLeft}px`);
-
-        this.setActive();
 
         // set animation to call stack
         const timeout1 = setTimeout(() => {
