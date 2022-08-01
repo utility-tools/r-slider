@@ -2,6 +2,7 @@
   position: relative;
   width: 100%;
   overflow: hidden;
+  padding: 5px 0;
 }
 
 .r-slider__slides {
@@ -24,6 +25,10 @@
       -ms-flex: 1;
           flex: 1;
   position: relative;
+  -webkit-transform: scale(0.9);
+          transform: scale(0.9);
+  -webkit-transition: all var(--animation-duration) ease-in-out;
+  transition: all var(--animation-duration) ease-in-out;
 }
 
 .r-slider__slide-caption {
@@ -34,6 +39,12 @@
   width: 100%;
   text-align: center;
   color: #FFF;
+}
+
+.r-slider__slide.r-slider__slide--active {
+  outline: 5px solid rgba(225, 202, 127, 0.9);
+  -webkit-transform: scale(1);
+          transform: scale(1);
 }
 
 .r-slider__slide-img {

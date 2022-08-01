@@ -2,7 +2,7 @@ import RSlider from '../src/r-slider.js';
 
 const slider = new RSlider({
     selector: document.querySelector('#r-slider'),
-    gap: 20, // in px
+    gap: 5, // in px
     visibleItems: {
         large: 3,
         medium: 1,

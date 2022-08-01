@@ -2,6 +2,7 @@
     position: relative;
     width: 100%;
     overflow: hidden;
+    padding: 5px 0;
 
     &__slides {
         position: relative;
@@ -18,6 +19,8 @@
     &__slide {
         flex: 1;
         position: relative;
+        transform: scale(0.9);
+        transition: all var(--animation-duration) ease-in-out;
 
         &-caption{
             background: rgba(0, 0, 0, 0.8);
@@ -30,7 +33,8 @@
         }
 
         &.r-slider__slide--active {
-            // border: 1px solid red;
+            outline: 5px solid rgba(225, 202, 127, 0.9);
+            transform: scale(1);
         }
     }
 
